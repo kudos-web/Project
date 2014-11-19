@@ -1,0 +1,4 @@
+Project
+=======
+
+Empty project template
