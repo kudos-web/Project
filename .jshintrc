@@ -1,0 +1,14 @@
+{
+  "curly": false,
+  "eqeqeq": false,
+  "immed": false,
+  "latedef": false,
+  "newcap": false,
+  "noarg": false,
+  "sub": false,
+  "undef": false,
+  "boss": false,
+  "eqnull": false,
+  "node": false,
+  "predef": [ "$", "window" ]
+}

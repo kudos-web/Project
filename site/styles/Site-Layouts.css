@@ -1,0 +1,112 @@
+﻿.collapsed {
+	margin: 0;
+}
+
+.collapsed-top {
+	margin-top: 0;
+}
+
+.collapsed-bottom {
+	margin-bottom: 0;
+}
+
+/*
+## Content Section
+
+content section is a block to provide consistent vertical spacing of ```30px``` or ```60px``` between various sections of the page
+
+```
+<div class="content-section">
+	<p>this has 30px margin top and bottom</p>
+	<p class="fixie"></p>
+	<p class="fixie"></p>
+</div>
+```
+*/
+
+.content-section {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+/*
+use ```content-section--large``` for ```60px``` vertical margin
+
+```
+<div class="content-section content-section--large">
+	<p>this has 60px margin top and bottom</p>
+</div>
+```
+*/
+.content-section--large {
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+
+/*
+use ```content-section--small``` for ```10px``` vertical margin
+
+```
+<div class="content-section content-section--small">
+	<p>this has 60px margin top and bottom</p>
+</div>
+```
+*/
+.content-section--small {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+/*
+use ```content-section--collapsed-top``` to remove top margin.
+
+```
+<div class="content-section content-section--collapsed-top">
+	<p>this has no margin top</p>
+	<p class="fixie"></p>
+	<p class="fixie"></p>
+</div>
+```
+*/
+.content-section--collapsed-top {
+	margin-top: 0;
+}
+
+/*
+use ```content-section--collapsed-bottom``` to remove bottom margin.
+
+```
+<div class="content-section content-section--collapsed-bottom">
+	<p>this has no margin bottom</p>
+	<p class="fixie"></p>
+	<p class="fixie"></p>
+</div>
+```
+*/
+.content-section--collapsed-bottom {
+	margin-bottom: 0;
+}
+
+
+/*
+## Two columns content
+
+top split content into 2 columns
+
+```
+<div class="two-columns-content">
+	<p class="fixie"></p>
+	<p class="fixie"></p>
+</div>
+```
+*/
+.two-columns-content {
+	-moz-column-count: 2;
+	-moz-column-gap: 20px;
+	-webkit-column-count: 2;
+	-webkit-column-gap: 20px;
+}
+
+.two-columns-content p {
+	display: inline-block;
+}
