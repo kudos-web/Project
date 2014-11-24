@@ -225,6 +225,7 @@ pip-log.txt
 !.jshintrc
 !Gruntfile.js
 !package.json
+!index.html
 
 !site/
 
