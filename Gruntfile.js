@@ -13,102 +13,82 @@ module.exports = function(grunt) {
 	// Project configuration.
 	grunt.initConfig({
 
-		csslint: {
-			options: {
-				csslintrc: '.csslintrc',
-				formatters: [
-					{id: 'lint-xml', dest: 'csslint.xml'}
-				]
-			},
-			all: {
-				src: ['site/styles/*.css']
-			}
-		},
 
 		cssmin: {
 			combine: {
 				options: {
 				},
 				files: {
-					'site/styles/styles.min.css': [
-						'site/styles/site-base.css',
-						'site/styles/site-type-reset.css',
-						'site/styles/site-type-icons.css',
-						'site/styles/site-layouts.css',
-						'site/styles/site-siteelements.css',
-						'site/styles/site-siteelements-buttons.css',
-						'site/styles/site-siteelements-listings.css'
-					]
+					'Site/Styles/styles.min.css': []
 				}
 			}
 		},
 
-		jshint: {
-			all: [
-				'site/scripts/assets/*.js'
-			],
-			options: {
-				jshintrc: '.jshintrc'
+
+		less: {
+			development: {
+				options: {
+					//compress: true
+					dumpLineNumber: true,
+					sourceMap: true,
+					outputSourceFiles: true
+				},
+				files: {
+					"SiteDist/Styles/all.css": "Site/less/all.less"
+				}
 			},
-			jenkins: {
-					options: {
-							reporter: require('jshint-jenkins-violations-reporter'),
-							reporterOutput: 'jshint.xml',
-					},
-					src: [ 'site/scripts/assets/*.js' ]
+			production: {
+				options: {
+					compress: true,
+					sourceMap: true,
+					outputSourceFiles: true
+				},
+				files: {
+					"SiteDist/Styles/all.min.css": "Site/less/all.less"
+				}
 			}
 		},
+
 
 		requirejs: {
 			compile: {
 				options: {
 					name: "lib/almond/almond",
 					include: ["main"],
-					baseUrl: "site/scripts/",
-					mainConfigFile: "site/scripts/main.js",
-					out: "site/scripts/main.min.js",
+					baseUrl: "Site/Scripts/",
+					mainConfigFile: "Site/Scripts/main.js",
+					out: "SiteDist/Scripts/main.min.js",
 					//optimize: "none",
 					insertRequire: ["main"]
 				}
 			}
 		},
 
-		phantomas: {
-			performance : {
-				options : {
-					assertions : {},
-					indexPath            : './performance/',
-					url                  : 'http://kudosweb.com/',
-					numberOfRuns         : 10
-				}
-			}
-		},
 
 		usebanner: {
 			build: {
 				options: {
 					position: 'top',
-					banner: '/*! \nSite - ' + 
+					banner: '/*! \nSynlait - ' +
 								'<%= grunt.template.today("dd mmmm yyyy") %>\n' +
-								'Community service which fosters participation in sport and active living.\n\n' +
+								'Synlait is an innovative dairy processing company based in the heart of Canterbury, New Zealand. We combine expert farming, with state-of-the-art processing, to produce a range of nutritional milk products that provide genuine benefits for health and wellbeing.\n\n' +
 								'(c) <%= grunt.template.today("yyyy") %> Kudos Web ' +
 								'- http://www.kudosweb.com \n*/\n',
 					linebreak: true
 				},
 				files: {
-					src: [ 'site/scripts/main.min.js', 'site/styles/styles.min.css' ]
+					src: ['SiteDist/Scripts/main.min.js', 'SiteDist/Styles/all.min.css']
 				}
 			}
 		},
 
 		watch: {
-			css: {
-				files: 'site/styles/*.css',
-				tasks: ['csslint:strict']
-			},
-			scripts: {
-				files: [ 'site/scripts/assets/*.js' ],
-				tasks: ['jshint']
+			styles: {
+				files: ['Site/Styles/**/*.less', 'Site/Styles/**/*.css'], // which files to watch
+				tasks: ['less:development'],
+				options: {
+					nospawn: true
+				}
 			}
 		}
 
@@ -118,11 +98,8 @@ module.exports = function(grunt) {
 	// grunt.option('force', true);
 
 	// These plugins provide necessary tasks.
-	grunt.loadNpmTasks('grunt-contrib-jshint');
 
-	grunt.loadNpmTasks('grunt-contrib-uglify');
-
-	grunt.loadNpmTasks('grunt-contrib-csslint');
+	grunt.loadNpmTasks('grunt-contrib-less');
 
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 
@@ -130,26 +107,18 @@ module.exports = function(grunt) {
 
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
-	grunt.loadNpmTasks('grunt-phantomas');
-
 	grunt.loadNpmTasks('grunt-banner');
 
 
-	// Whenever the "test" task is run, first clean the "tmp" dir, then run this
-	// plugin's task(s), then test the result.
 
-	grunt.registerTask('lint', ['csslint:all', 'jshint:all']);
+	// grunt.registerTask('watch', ['watch:styles']);
 
-	grunt.registerTask('watch', ['csslint:all', 'jshint:all']);
-
-	grunt.registerTask('build', ['requirejs:compile', 'cssmin:combine', 'usebanner:build']);
-
-	grunt.registerTask('jenkins', ['csslint:all', 'jshint:jenkins', 'requirejs:compile', 'cssmin:combine', 'usebanner:build']);
-
-	// grunt.registerTask('performance', ['phantomas:performance']);
+	grunt.registerTask('build', ['requirejs:compile', 'less:production', 'usebanner:build']);
 
 	// By default, lint and run all tests.
-	grunt.registerTask('default', ['csslint:all', 'jshint:all', 'requirejs:compile', 'cssmin:combine']);
+	grunt.registerTask('default', ['requirejs:compile', 'less:development', 'usebanner:build']);
 
+	grunt.registerTask('lessdev', ['less:development']);
 
+	grunt.registerTask('lessprod', ['less:production']);
 };

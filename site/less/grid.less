@@ -1,111 +1,5 @@
-﻿/*#- reset#*/
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dd, dt,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-
-html {
-	line-height: 1.6;
-}
-
-
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
-caption, th, td {
-	text-align: left;
-	font-weight: normal;
-	vertical-align: middle;
-}
-
-q, blockquote {
-	quotes: none;
-}
-q:before, q:after, blockquote:before, blockquote:after {
-	content: "";
-	content: none;
-}
-
-a img {
-	border: none;
-}
-
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
-	display: block;
-}
-
-body {
-	background-color: transparent;
-	padding: 0;
-	margin: 0;
-	line-height: 1;
-	-webkit-font-smoothing: antialiased;
-}
-
-a:focus {
-	outline: none;
-}
-
-img,
-object,
-embed {
-	max-width: 100%;
-	height: auto;
-}
-
-object,
-embed {
-	height: 100%;
-}
-
-img {
-	display: inline-block;
-}
-
-textarea {
-	height: auto;
-	min-height: 50px;
-}
-
-select {
-	width: 100%;
-}
-
-ol, ul {
-    margin-top:1em;
-    margin-bottom:1em;
-    margin-left:0;
-    margin-right:0;
-  
-    padding-left:20px;
-}
-
-.no-bullets {
-    margin-top:0;
-    margin-bottom:0;
-    list-style:none;
-    padding-left:0;
-}
-
-
+﻿@import "variables.less";
+@import "mixins.less";
 
 .row {
     /*width:1200px;*/
@@ -121,7 +15,8 @@ ol, ul {
 
 
 .row {
-	width: 980px;
+	// width: 1200px;
+	width: @base-max-width;
 }
 
 
@@ -161,7 +56,8 @@ ol, ul {
 
 .col-inner {
 	display: block;
-	padding: 0 10px;
+	// padding: 0 10px;
+	padding: 0 @base-gutter;
 }
 
 .span1 {
@@ -434,89 +330,4 @@ ol, ul {
 	.mobile-pull-right {
 		float: right;
 	}
-}
-.centered {
-	float: none;
-	margin: 0 auto;
-}
-
-.text-left {
-	text-align: left;
-}
-
-.text-right {
-	text-align: right;
-}
-
-.text-center {
-	text-align: center;
-}
-
-.text-justify {
-	text-align: justify;
-}
-
-.hidden {
-	display: none !important;
-}
-
-.cf {
-	overflow: hidden;
-}
-
-.clearfix {
-	*zoom: 1;
-}
-
-.clearfix:before,
-.clearfix:after {
-	display: table;
-	content: "";
-	clear: both;
-}
-
-
-.relative { position:relative; }
-
-.inline-block {
-	display:inline-block;
-	*display:inline;
-	*zoom:1;
-	vertical-align:top;
-}
-.valign-middle { vertical-align:middle; }
-.valign-bottom { vertical-align:bottom; }
-
-.no-float { float:none; }
-
-sup {
-	font-size:70%;
-	vertical-align:top;
-}
-
-.row--collapsed {
-	margin-left:-10px;
-	margin-right:-10px;
-	width:auto;
-	max-width:none;
-}
-
-.inline-block-wrapper {
-	font-size:0;
-	line-height:0;
-	letter-spacing:-4px;
-}
-
-.inline-block-wrapper > .inline-block,
-.inline-block-wrapper .PagerControl {
-	display:inline-block;
-	vertical-align:top;
-	font-size:14px;
-	line-height:normal;
-	letter-spacing:normal;
-	float:none;
-}
-
-.inline-block-wrapper .PagerControl {
-	display: block;
 }
