@@ -226,6 +226,8 @@ pip-log.txt
 !Gruntfile.js
 !package.json
 !index.html
+!install.lnk
+!gruntinit.lnk
 
 !site/
 
@@ -233,3 +235,6 @@ pip-log.txt
 
 site/scripts/main.min.js
 site/styles/styles.min.css
+
+sitedist/styles/all.min.css
+sitedist/scripts/main.min.js
